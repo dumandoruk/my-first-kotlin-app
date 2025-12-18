@@ -2,6 +2,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <!-- İzinleriniz doğru, ancak READ_EXTERNAL_STORAGE için maxSdkVersion eklemek daha iyi bir pratiktir -->
+    <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"
+        android:maxSdkVersion="32" />
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -11,18 +16,22 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.ArtBookKotlin">
-        <activity
-            android:name=".ArtActivity"
-            android:exported="false" />
+
+        <!-- DOĞRU: MainActivity uygulamanın başlangıç noktası olmalı -->
         <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <!-- DOĞRU: ArtActivity, MainActivity tarafından çağrılacağı için exported="false" olmalı -->
+        <activity
+            android:name=".ArtActivity"
+            android:exported="false" />
+
     </application>
 
 </manifest>
